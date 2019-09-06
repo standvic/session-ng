@@ -1,0 +1,10 @@
+::ng-deep html, body {
+  background: #3f0469;
+  background: -webkit-linear-gradient(#bc6cd0, #8240ac);
+  background: -moz-linear-gradient(#bc6cd0, #8240ac);
+  background: linear-gradient(#bc6cd0, #8240ac);
+  height: 100%;
+  position: relative;
+  padding: 0;
+  margin: 0 auto;
+}
