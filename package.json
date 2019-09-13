@@ -23,6 +23,7 @@
     "@angular/router": "~8.2.4",
     "core-js": "^3.2.1",
     "ng2-opd-popup": "^1.1.21",
+    "ngx-bootstrap": "^5.1.1",
     "rxjs": "~6.4.0",
     "rxjs-compat": "^6.5.3",
     "systemjs": "^6.0.0",
