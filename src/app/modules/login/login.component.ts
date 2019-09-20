@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { ModalContentComponent } from '../../shared/components/modal-content/modal-content.component'
+import { LoginRegFormComponent } from "./components/login-reg-form/login-reg-form.component";
 
 @Component({
   selector: 'app-login',
@@ -14,19 +14,14 @@ export class LoginComponent implements OnInit {
 
   openModalWithComponent() {
     const initialState = {
-      list: [
-        'Open a modal-content with component',
-        'Pass your data',
-        'Do something else',
-        '...'
-      ],
+      list: [],
       title: 'Вход / регистрация'
     },
     ignoreBackdropClick: boolean = true,
     backdrop: boolean = false;
 
-    this.bsModalRef = this.modalService.show(ModalContentComponent, {backdrop, initialState, ignoreBackdropClick});
-    this.bsModalRef.content.closeBtnName = 'Close';
+    this.bsModalRef = this.modalService.show(LoginRegFormComponent, {backdrop, initialState, ignoreBackdropClick});
+    this.bsModalRef.content.closeBtnName = 'Закрыть';
   }
 
   ngOnInit() {

@@ -1,17 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {FormsModule} from "@angular/forms";
+import { ModalModule } from 'ngx-bootstrap';
 
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
-import { ModalContentModule} from '../../shared/components/modal-content/modal-content.module'
+import {LoginRegFormComponent} from "./components/login-reg-form/login-reg-form.component";
 
 
 @NgModule({
   imports: [
     CommonModule,
     LoginRoutingModule,
-    ModalContentModule
+    ModalModule.forRoot(),
+    FormsModule
   ],
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, LoginRegFormComponent],
+  entryComponents: [LoginRegFormComponent]
 })
 export class LoginModule { }
