@@ -7,6 +7,8 @@ import { LayoutModule } from './core/layout/layout.module';
 import { AppRoutingModule } from './app-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppComponent } from './app.component';
+//import { AuthGuard} from "./core/guards/auth.guard";
+//import { ApiService } from './core/services/api.service'
 
 @NgModule({
   declarations: [
@@ -20,7 +22,7 @@ import { AppComponent } from './app.component';
     LayoutModule,
     HttpClientModule
   ],
-  providers: [],
+  //providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from "./core/auth/auth.guard";
 
 const routes: Routes = [
   {
@@ -7,19 +8,20 @@ const routes: Routes = [
     redirectTo: '/feed',
     pathMatch: 'full'
   },
-  { path: 'feed', loadChildren: './modules/feed/feed.module#FeedModule' },
-  /*{ path: 'users', loadChildren: './users/users.module#UsersModule' },
-  { path: 'account-settings', loadChildren: './account-settings/account-settings.module#AccountSettingsModule' },*/
+  {
+    path: 'support',
+    loadChildren: './modules/support/support.module#SupportModule'
+  },
+  {
+    path: 'feed',
+    canActivate: [AuthGuard],
+    loadChildren: './modules/feed/feed.module#FeedModule'
+  },
   {
     path: 'login',
     loadChildren: './modules/login/login.module#LoginModule',
     data: { showHeader: true, showSidebar: false }
-  },
-  /*{
-    path: 'registration',
-    loadChildren: './registration/registration.module#RegistrationModule',
-    data: { showHeader: false, showSidebar: false }
-  }*/
+  }
 ];
 
 @NgModule({
@@ -27,3 +29,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+

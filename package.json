@@ -22,11 +22,13 @@
     "@angular/platform-browser-dynamic": "~8.2.4",
     "@angular/router": "~8.2.4",
     "core-js": "^3.2.1",
+    "lodash": "^4.17.15",
     "ng2-opd-popup": "^1.1.21",
     "ngx-bootstrap": "^5.1.1",
     "rxjs": "~6.4.0",
     "rxjs-compat": "^6.5.3",
     "systemjs": "^6.0.0",
+    "ts-md5": "^1.2.6",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },

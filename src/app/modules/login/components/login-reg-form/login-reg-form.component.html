@@ -5,29 +5,44 @@
   </button>-->
 </div>
 <div class="modal-body">
-  <form>
+  <form (ngSubmit)="submitToGetSMS()">
     <div class="form-group">
       <label>Язык интерфейса</label>
-      <select class="form-control" [(ngModel)]="language" required name="language">
-        <option *ngFor="let l of language" [value]="l.name">
-          {{l.name}}
+      <select class="form-control" [(ngModel)]="langInfo" required name="langInfo">
+        <option *ngFor="let language of langInfoArray" [value]="language.id">
+          {{language.name}}
         </option>
       </select>
     </div>
     <div class="form-group">
       <label>Выберите страну</label>
-      <select class="form-control" [(ngModel)]="country" required name="country">
-        <option *ngFor="let c of country" [value]="c.name">
-          {{c.name}}
+      <select class="form-control" [(ngModel)]="countryInfo" required name="countryInfo">
+        <option *ngFor="let country of countryInfoArray" [value]="country.id">
+          {{country.name}}
         </option>
       </select>
     </div>
     <div class="form-group">
       <label>Ваш номер телефона</label>
-      <input type="text" class="form-control" required name="phone">
+      <input [(ngModel)]="phone" type="text" class="form-control" required name="phone">
     </div>
+    <a [href]="url.domain.root + url.privacyPolicyPage" target="_blank">Политика конфиденциальности</a> <br/>
+    <a [href]="url.domain.root + url.userAgreementRuPage" target="_blank">Пользовательское соглашение</a><br/>
+    <button (click)="getSMSCode()">Получить код</button>
   </form>
+  <div>
+    На Ваш телефон будет отправлено SMS с кодом.
+    SMS должно прийти в течение одной минуты,
+    благодарим за терпение. <br/>
+    <div class="form-group">
+      <label>Введите код из SMS</label>
+      <input type="text" class="form-control" required name="code">
+    </div>
+    <button>Далее</button>
+  </div>
 </div>
+<!--
 <div class="modal-footer">
   <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">{{closeBtnName}}</button>
 </div>
+-->

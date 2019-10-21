@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  api: 'http://api.sessia.local/api/',
+  authMethod: 'http://api.sessia.local/oauth/v2/token'
 };
 
 /*

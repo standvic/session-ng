@@ -1,58 +1,76 @@
 import {Component, OnInit} from "@angular/core";
 import {BsModalRef} from "ngx-bootstrap/modal";
 import { HttpClient } from '@angular/common/http';
+import {LangInfo, CountryInfo, AuthInfo} from '../../../../core/models'
+import { URL } from '../../../../core/urls'
+import { auth } from  '../../../../core/config'
+import { ApiService } from "../../../../core/services/api.service"
+import { Md5 } from 'ts-md5'
+import lodash from 'lodash'
+import {AuthService} from "../../../../core/auth/auth.service";
 
 @Component({
   selector: 'get-sms-form',
   templateUrl: './login-reg-form.component.html',
-  styleUrls: ['./login-reg-form.component.css']
+  styleUrls: ['./login-reg-form.component.css'],
+  //providers: [ApiService]
 })
 
 export class LoginRegFormComponent implements OnInit {
   title: string
   closeBtnName: string
-  country: CountryInfo
-  language: LangInfo
+  countryInfo: CountryInfo
+  langInfo: LangInfo
+  phone: number
+  countryInfoArray: CountryInfo[]
+  langInfoArray: LangInfo[]
+  url = URL
+  phoneId = 'CID-' + Md5.hashStr(lodash.map(lodash.range(1,5), Math.random).toString())
+  confirmCode: string
+  authInfo: AuthInfo
 
-  constructor(private http: HttpClient, public bsModalRef: BsModalRef) {
+  constructor(private api: ApiService, private authService: AuthService, private http: HttpClient, public bsModalRef: BsModalRef) {
   }
 
   ngOnInit () : void {
-    this.http.get('https://api.sessia.com/api/language').subscribe((data : LangInfo) => {
-      this.language = data
-    });
+    this.api.getLanguages()
+      .subscribe((data: LangInfo[]) => {
+        this.langInfoArray = data
+    })
 
-    this.http.get('https://api.sessia.com/api/directory/countries?version=v2').subscribe((data : CountryInfo) => {
-      this.country = data
-    });
+    this.api.getCountries()
+      .subscribe((data: CountryInfo[]) => {
+        this.countryInfoArray = data
+      })
+  }
+
+  getSMSCode() : void {
+  }
+
+  submitToGetSMS(): void {
+    console.log(this.phone,
+      this.countryInfo,
+      this.phoneId,
+      this.confirmCode,
+      this.countryInfoArray.filter((item) => {
+        return item.id == Number(this.countryInfo)
+      })[0].code,
+      auth.grantDefault.grant_type,
+      auth.grantDefault.client_id,
+      auth.grantDefault.client_secret)
+    this.authService.login(this.phone,
+                           Number(this.countryInfo),
+                           this.phoneId,
+                           this.confirmCode,
+                           this.countryInfoArray.filter((item) => {
+                             return item.id == Number(this.countryInfo)
+                           })[0].code,
+                           auth.grantDefault.grant_type,
+                           auth.grantDefault.client_id,
+                           auth.grantDefault.client_secret)
+      .subscribe((data: AuthInfo) => {
+        this.authInfo = data
+      })
   }
 }
-
-class LangInfo
-{
-  id: number
-  name: string
-  lang_short: string
-  android_translation_name: string
-  ios_translation_name: string
-}
-
-class CountryInfo {
-  name: string
-  code: string
-  icon: string
-  lang: string
-  pickup: boolean
-  delivery: boolean
-  id: number
-  mask: string
-  default_currency : {
-    id: number
-    code: string
-    show_code: string
-    left_currency_symbol_placement: boolean
-    sort: number
-  }
-}
-
 
