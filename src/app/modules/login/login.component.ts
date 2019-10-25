@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
     backdrop: boolean = false;
 
     this.bsModalRef = this.modalService.show(LoginRegFormComponent, {backdrop, initialState, ignoreBackdropClick});
-    this.bsModalRef.content.closeBtnName = 'Закрыть';
   }
 
   ngOnInit() {

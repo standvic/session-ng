@@ -1,0 +1,41 @@
+<form [formGroup]="formGroup" (submit)="onSubmit()">
+  <button class="btn">Загрузите фотографию</button>
+  <div class="form-group">
+    <label for="name">Имя</label>
+    <input type="text" id="name" formControlName="name" class="form-control">
+    <div class="error" *ngIf="isControlInvalid('name')">
+      Имя должно состоять только из букв
+    </div>
+
+    <label for="sername">Фамилия</label>
+    <input type="text" id="sername" formControlName="sername" class="form-control">
+    <div class="error" *ngIf="isControlInvalid('sername')">
+      Фамилия должна состоять только из букв
+    </div>
+
+    <label for="birthdate">Дата рождения</label>
+    <input type="text" id="birthdate" formControlName="birthdate" class="form-control">
+
+    <label for="email">E-mail</label>
+    <input type="text" id="email" formControlName="email" class="form-control">
+
+    <label for="country">Country</label>
+    <select id="country" formControlName="country" class="form-control">
+      <option [value]="defaultCountryId" selected="selected">{{defaultCountryName}}</option>
+    </select>
+
+    <label for="city">City</label>
+    <select id="city" formControlName="city" class="form-control"></select>
+
+    <label>
+      Woman
+      <input type="radio" value="Woman" name="gender" formControlName="gender" class="form-control">
+    </label>
+    <label>
+      Man
+      <input type="radio" value="Man" name="gender" formControlName="gender" class="form-control">
+    </label>
+
+  </div>
+  <button class="btn" type="submit">Зарегистрироваться</button>
+</form>

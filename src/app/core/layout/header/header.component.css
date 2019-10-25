@@ -14,7 +14,8 @@
 
 ::ng-deep header .logo {
   display: inline-block;
-  background: url("../../../../assets/img/sessia-logo-md.png") no-repeat 7px 50%;
+  /*background: url("../../../../assets/img/sessia-logo-md.png") no-repeat 7px 50%;*/
+  background: url("https://www.sessia.com/web-version/css/img/sessia-logo-md.png") no-repeat 7px 50%;
   background-size: 120px;
   height: 54px;
   width: 159px;

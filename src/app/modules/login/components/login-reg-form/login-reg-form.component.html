@@ -26,20 +26,20 @@
       <label>Ваш номер телефона</label>
       <input [(ngModel)]="phone" type="text" class="form-control" required name="phone">
     </div>
-    <a [href]="url.domain.root + url.privacyPolicyPage" target="_blank">Политика конфиденциальности</a> <br/>
-    <a [href]="url.domain.root + url.userAgreementRuPage" target="_blank">Пользовательское соглашение</a><br/>
-    <button (click)="getSMSCode()">Получить код</button>
+    <a [href]="url.privacyPolicyPage" target="_blank">Политика конфиденциальности</a> <br/>
+    <a [href]="url.userAgreementRuPage" target="_blank">Пользовательское соглашение</a><br/>
+    <button>Получить код</button>
   </form>
-  <div>
+  <form (ngSubmit)="submitToGetSMS()">
     На Ваш телефон будет отправлено SMS с кодом.
     SMS должно прийти в течение одной минуты,
     благодарим за терпение. <br/>
     <div class="form-group">
       <label>Введите код из SMS</label>
-      <input type="text" class="form-control" required name="code">
+      <input type="text" [(ngModel)]="confirmCode" class="form-control" required name="confirmCode" [disabled]="hasntSMS">
     </div>
     <button>Далее</button>
-  </div>
+  </form>
 </div>
 <!--
 <div class="modal-footer">

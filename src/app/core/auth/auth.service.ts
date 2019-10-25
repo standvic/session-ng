@@ -28,6 +28,7 @@ export class AuthService {
                phone_id: string,
                confirm_code: string,
                country_code: string,
+               validation_code: string,
                grant_type: string,
                client_id: string,
                client_secret: string) {
@@ -37,6 +38,7 @@ export class AuthService {
       .set('phone_id', phone_id)
       .set('confirm_code', confirm_code)
       .set('country_code', country_code)
+      .set('validation_code', validation_code)
       .set('grant_type', grant_type)
       .set('client_id', client_id)
       .set('client_secret', client_secret)

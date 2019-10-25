@@ -4,8 +4,12 @@
 
 export const environment = {
   production: false,
+  root: 'http://www.sessia.local/',
+  appRoot: 'http://www.sessia.local/web-version',
   api: 'http://api.sessia.local/api/',
-  authMethod: 'http://api.sessia.local/oauth/v2/token'
+  authMethod: 'http://api.sessia.local/oauth/v2/token',
+  privacyPolicyPage: 'https://www.sessia.com/privacy_policy.html',
+  userAgreementRuPage: 'https://www.sessia.com/user_agreement_ru.html',
 };
 
 /*
