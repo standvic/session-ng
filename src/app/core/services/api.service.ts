@@ -1,11 +1,7 @@
 import { Injectable } from "@angular/core"
 import { HttpClient } from '@angular/common/http'
-import { LangInfo } from "../../core/models"
-import { CountryInfo } from "../../core/models"
+import { LangInfo, CountryInfo, CityInfo } from "../../core/models"
 import { URL } from '../urls'
-import 'rxjs/add/operator/map'
-import 'rxjs/add/operator/catch'
-import 'rxjs/add/observable/throw'
 import { environment } from '../../../environments/environment'
 
 @Injectable({
@@ -24,5 +20,20 @@ export class ApiService {
   public getCountries() {
     return this.http
       .get<CountryInfo[]>(environment.api + URL.REST.countryInfo)
+  }
+
+  public getCities(countryId) {
+    return this.http
+      .get<CityInfo[]>(environment.api + URL.REST.cityInfo + '/' + countryId)
+  }
+
+  public updateUserInfo(params) {
+    return this.http
+      .put<any>(environment.api + URL.REST.updateUserInfo, { "user": params })
+  }
+
+  public requestCallAuth(phoneNumber) {
+    return this.http
+      .post<any>(environment.api + URL.REST.requestCallAuth, phoneNumber )
   }
 }

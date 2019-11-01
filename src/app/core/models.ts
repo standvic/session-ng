@@ -15,10 +15,11 @@ class CountryId {
   id: number
 }
 
-class City {
+export class CityInfo {
   id: number
   ru_name: string
-  country: CountryId
+  countryId: number
+  regionId: number
 }
 
 class Rate {
@@ -73,7 +74,7 @@ export class User {
   accounts: Account[]
   user_phones: userPhones[]
   photo: string
-  city: City
+  city: CityInfo
   country: CountryInfo
   language: LangInfo
   rate: Rate

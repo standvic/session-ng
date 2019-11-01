@@ -1,41 +1,81 @@
 <form [formGroup]="formGroup" (submit)="onSubmit()">
-  <button class="btn">Загрузите фотографию</button>
+
+  <div class="row form-group text-center">
+    <div class="logo-block">
+      <label>
+        <input type="file" style="display: none" (change)="loadLogo($event)"/>
+        <div class="logo logo_sm user-pic-logo" [ngStyle]="{'background-image':'url(' + formGroup.controls['photo'].value + ')'}"></div>
+        <div class="load-btn">Загрузите фотографию</div>
+      </label>
+    </div>
+  </div><br/><br/>
+
   <div class="form-group">
-    <label for="name">Имя</label>
+    <label for="name">Имя*</label>
     <input type="text" id="name" formControlName="name" class="form-control">
     <div class="error" *ngIf="isControlInvalid('name')">
-      Имя должно состоять только из букв
+      Укажите имя
     </div>
+  </div>
 
-    <label for="sername">Фамилия</label>
-    <input type="text" id="sername" formControlName="sername" class="form-control">
-    <div class="error" *ngIf="isControlInvalid('sername')">
-      Фамилия должна состоять только из букв
+  <div class="form-group">
+    <label for="surname">Фамилия*</label>
+    <input type="text" id="surname" formControlName="surname" class="form-control">
+    <div class="error" *ngIf="isControlInvalid('surname')">
+      Укажите фамилию
     </div>
+  </div>
 
-    <label for="birthdate">Дата рождения</label>
-    <input type="text" id="birthdate" formControlName="birthdate" class="form-control">
+  <div class="form-group">
+    <label for="birthDate">Дата рождения</label>
+    <input type="text" id="birthDate" formControlName="birthDate" class="form-control mb-3" [placeholder]="birthDate" bsDatepicker [bsConfig]="bsConfig"/>
+  </div>
 
+  <div class="form-group">
     <label for="email">E-mail</label>
     <input type="text" id="email" formControlName="email" class="form-control">
+    <div class="error" *ngIf="isControlInvalid('email')">
+      Некорректный E-mail
+    </div>
+  </div>
 
-    <label for="country">Country</label>
-    <select id="country" formControlName="country" class="form-control">
+  <div class="form-group">
+    <label for="country">Страна</label>
+    <select id="country" formControlName="country" class="form-control" (change)="onChangeCountry()">
+      <option *ngFor="let country of countryInfoArray" [value]="country.id">
+        {{country.name}}
       <option [value]="defaultCountryId" selected="selected">{{defaultCountryName}}</option>
     </select>
-
-    <label for="city">City</label>
-    <select id="city" formControlName="city" class="form-control"></select>
-
-    <label>
-      Woman
-      <input type="radio" value="Woman" name="gender" formControlName="gender" class="form-control">
-    </label>
-    <label>
-      Man
-      <input type="radio" value="Man" name="gender" formControlName="gender" class="form-control">
-    </label>
-
   </div>
-  <button class="btn" type="submit">Зарегистрироваться</button>
+
+  <div class="form-group">
+    <label for="city">Город*</label>
+    <select id="city" formControlName="city" class="form-control">
+      <option *ngFor="let city of cityInfoArray" [value]="city.id">
+        {{city.ru_name}}
+    </select>
+    <div class="error" *ngIf="isControlInvalid('city')">
+      Укажите город
+    </div>
+  </div>
+
+  <div class="form-group">
+    Пол*<br/>
+    <label for="female">
+      Женщина
+      <input id="female" type="radio" value="0" name="gender" formControlName="gender" class="form-control">
+    </label>
+    <label for="male">
+      Мужчина
+      <input id="male" type="radio" value="1" name="gender" formControlName="gender" class="form-control">
+    </label>
+    <div class="error" *ngIf="isControlInvalid('gender')">
+      Укажите пол
+    </div>
+  </div>
+
+  <div class="form-group">
+    <button class="btn  btn-dark" type="submit">Зарегистрироваться</button>
+  </div>
+
 </form>

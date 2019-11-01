@@ -1,5 +1,5 @@
-import { Component, OnInit } from "@angular/core"
-import { BsModalRef, BsModalService} from "ngx-bootstrap"
+import { Component } from "@angular/core"
+import { BsModalRef } from "ngx-bootstrap"
 
 @Component({
   selector: 'user-profile-form',
@@ -11,9 +11,7 @@ export class UserProfileFormComponent {
 
   title: string
 
-  constructor(public bsModalRef: BsModalRef, private modalService: BsModalService) {
+  constructor(public bsModalRef: BsModalRef) {
   }
 
-  ngOnInit(): void  {
-  }
 }

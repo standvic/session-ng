@@ -5,14 +5,13 @@ import { map } from "rxjs/operators"
 
 import { environment } from "../../../environments/environment";
 import {AuthInfo, User} from "../models";
-import {analyticsPackageSafelist} from "@angular/cli/models/analytics";
 
 @Injectable({providedIn: "root"})
 export class AuthService {
 
   private authInfoSubject: BehaviorSubject<AuthInfo>
   public authInfo: Observable<AuthInfo>
-  private authMethod: string = environment.authMethod//'https://api.sessia.com/oauth/v2/token'
+  private authMethod: string = environment.authMethod
 
   constructor(private http:HttpClient) {
     this.authInfoSubject = new BehaviorSubject<AuthInfo>(JSON.parse(localStorage.getItem('authInfo')))

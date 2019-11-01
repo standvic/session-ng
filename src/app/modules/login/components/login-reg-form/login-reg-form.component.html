@@ -4,7 +4,9 @@
     <span aria-hidden="true">&times;</span>
   </button>-->
 </div>
+
 <div class="modal-body">
+
   <form (ngSubmit)="submitToGetSMS()">
     <div class="form-group">
       <label>Язык интерфейса</label>
@@ -14,6 +16,7 @@
         </option>
       </select>
     </div>
+
     <div class="form-group">
       <label>Выберите страну</label>
       <select class="form-control" [(ngModel)]="countryInfo" required name="countryInfo">
@@ -22,24 +25,67 @@
         </option>
       </select>
     </div>
+
     <div class="form-group">
       <label>Ваш номер телефона</label>
       <input [(ngModel)]="phone" type="text" class="form-control" required name="phone">
     </div>
+
     <a [href]="url.privacyPolicyPage" target="_blank">Политика конфиденциальности</a> <br/>
     <a [href]="url.userAgreementRuPage" target="_blank">Пользовательское соглашение</a><br/>
     <button>Получить код</button>
   </form>
+
+
   <form (ngSubmit)="submitToGetSMS()">
-    На Ваш телефон будет отправлено SMS с кодом.
-    SMS должно прийти в течение одной минуты,
-    благодарим за терпение. <br/>
+    <div *ngIf="!notCall">
+      На Ваш телефон будет отправлено SMS с кодом.
+      SMS должно прийти в течение одной минуты,
+      благодарим за терпение.
+    </div>
+
+    <div *ngIf="notCall">
+      <div class="row text-center">
+        <blockquote class="text-notice">
+          Для авторизации позвоните на телефон:<br/>
+          <a href="tel:+74951206695"> +7 (495) 120-66-95. </a>
+          <br />
+          Звонок бесплатный.<br/>
+          При звонке вам сообщат «Телефон временно недоступен» и звонок будет сброшен. Не переживайте, вернитесь в приложение, авторизация прошла успешно.<br/>
+        </blockquote>
+      </div>
+
+      <div class="row text-center">
+        <span style="background: none!important;
+                     border: none;
+                     padding: 0!important;
+                     color: #069;
+                     text-decoration: underline;
+                     cursor: pointer;">
+          Не получилось дозвониться?
+        </span>
+      </div>
+
+    </div>
+
+    <div class="row text-center">
+      <span *ngIf="notGetSMS" (click)="callAuth()" style="background: none!important;
+                                                          border: none;
+                                                          padding: 0!important;
+                                                          color: #069;
+                                                          text-decoration: underline;
+                                                          cursor: pointer;">
+        Не получили SMS?
+      </span>
+    </div>
+
     <div class="form-group">
       <label>Введите код из SMS</label>
       <input type="text" [(ngModel)]="confirmCode" class="form-control" required name="confirmCode" [disabled]="hasntSMS">
     </div>
     <button>Далее</button>
   </form>
+
 </div>
 <!--
 <div class="modal-footer">

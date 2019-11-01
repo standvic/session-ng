@@ -9,6 +9,9 @@ export const URL = {
   authMethod: 'https://api.sessia.com/oauth/v2/token',
   REST: {
     langInfo : 'language',
-    countryInfo: 'directory/countries?version=v2'
+    countryInfo: 'directory/countries?version=v2',
+    cityInfo: 'directory/cities',
+    updateUserInfo: 'users',
+    requestCallAuth: 'users/requestCallAuth'
   }
 }

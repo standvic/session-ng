@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FormsModule } from "@angular/forms"
 import { ModalModule } from 'ngx-bootstrap'
+import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker'
 
 import { LoginRoutingModule } from './login-routing.module'
 import { LoginComponent } from './login.component'
@@ -13,18 +14,16 @@ import { UserProfileFormComponent } from "./components/user-profile-form/user-pr
 import { ProfileFormComponent } from "../../shared/components/form/profile-form.component"
 import { ReactiveFormsModule } from "@angular/forms"
 
-//import { ApiService } from "../../core/services/api.service"
-
-
 @NgModule({
   imports: [
     CommonModule,
     LoginRoutingModule,
     ModalModule.forRoot(),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BsDatepickerModule.forRoot(),
+    DatepickerModule.forRoot()
   ],
-  //providers: [ApiService],
   declarations: [LoginComponent, LoginRegFormComponent, PhoneConfirmedFormComponent,
                  SpecifyIdFormComponent, SpecifyPromoIdFormComponent, UserProfileFormComponent,
                  ProfileFormComponent],

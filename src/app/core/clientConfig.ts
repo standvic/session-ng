@@ -16,9 +16,8 @@ export let currentUser: User = {
   city: {
     id: 0,
     ru_name: '',
-    country: {
-      id: 0
-    }
+    countryId: 0,
+    regionId: 0
   },
   country: {
     name: '',
