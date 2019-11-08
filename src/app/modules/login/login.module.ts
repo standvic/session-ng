@@ -13,6 +13,8 @@ import { SpecifyPromoIdFormComponent } from "./components/specify-promo-id-form/
 import { UserProfileFormComponent } from "./components/user-profile-form/user-profile-form.component"
 import { ProfileFormComponent } from "../../shared/components/form/profile-form.component"
 import { ReactiveFormsModule } from "@angular/forms"
+import {SignInFormComponent } from "./components/sign-in-form/sign-in-form.component"
+import{ RemainPasswordFormComponent } from "./components/remain-password-form/remain-password-form.component";
 
 @NgModule({
   imports: [
@@ -24,10 +26,14 @@ import { ReactiveFormsModule } from "@angular/forms"
     BsDatepickerModule.forRoot(),
     DatepickerModule.forRoot()
   ],
+
   declarations: [LoginComponent, LoginRegFormComponent, PhoneConfirmedFormComponent,
                  SpecifyIdFormComponent, SpecifyPromoIdFormComponent, UserProfileFormComponent,
-                 ProfileFormComponent],
+                 ProfileFormComponent, SignInFormComponent, RemainPasswordFormComponent],
+
   entryComponents: [LoginRegFormComponent, PhoneConfirmedFormComponent, SpecifyIdFormComponent,
-                    SpecifyPromoIdFormComponent, UserProfileFormComponent]
+                    SpecifyPromoIdFormComponent, UserProfileFormComponent, SignInFormComponent,
+                    RemainPasswordFormComponent]
 })
+
 export class LoginModule { }

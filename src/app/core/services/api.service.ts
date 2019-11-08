@@ -36,4 +36,14 @@ export class ApiService {
     return this.http
       .post<any>(environment.api + URL.REST.requestCallAuth, phoneNumber )
   }
+
+  public userGuarantor(params) {
+    return this.http
+      .put<any>(environment.api + URL.REST.userGuarantor, params )
+  }
+
+  public usersRemind (params) {
+    return this.http
+      .post<any>(environment.api + URL.REST.usersRemind, params)
+  }
 }

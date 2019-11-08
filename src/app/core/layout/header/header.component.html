@@ -1,4 +1,10 @@
 <header>
     <a routerLink="" class="logo"></a>
-    <a routerLink="/support" class="icon icon_head-phones_white header__help-icon" style="position: fixed; right: 0.9em; top: 0.9em; z-index: 9999"></a>
+    <a routerLink="/support" class="icon icon_head-phones_white header__help-icon" style="position: fixed; right: 17.9em; top: 0.9em; z-index: 9999"></a>
+    <a routerLink="/profile" *ngIf="name && surname" style="position: fixed; right: 10.9em; top: 0.9em; z-index: 9999; color: white">
+      <span>{{name}} </span>
+      <span>{{surname}}</span>
+    </a>
+    <span *ngIf="showAccount" style="color: white">{{memberId}}</span>
+    <a routerLink="/login" *ngIf="name && surname" (click)="logOut()" class="header__exit" style="position: fixed; right: 0.9em; top: 0.9em; z-index: 9999; color: white">Выйти</a>
 </header>

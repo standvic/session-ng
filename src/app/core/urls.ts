@@ -12,6 +12,8 @@ export const URL = {
     countryInfo: 'directory/countries?version=v2',
     cityInfo: 'directory/cities',
     updateUserInfo: 'users',
-    requestCallAuth: 'users/requestCallAuth'
+    requestCallAuth: 'users/requestCallAuth',
+    userGuarantor: 'users/guarantor',
+    usersRemind: 'users/remind'
   }
 }

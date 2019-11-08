@@ -45,3 +45,10 @@
 ::ng-deep .header__help-icon, .header__img-user {
   background-repeat: no-repeat;
 }
+
+.header__exit {
+  background-color: #a854d0;
+  padding: 10px 30px;
+  border-radius: 20px;
+  font-size: 16px;
+}

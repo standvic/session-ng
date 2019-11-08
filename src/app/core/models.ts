@@ -72,7 +72,7 @@ export class User {
   created_date: Date
   gender: number
   accounts: Account[]
-  user_phones: userPhones[]
+  user_phones: Number[]
   photo: string
   city: CityInfo
   country: CountryInfo

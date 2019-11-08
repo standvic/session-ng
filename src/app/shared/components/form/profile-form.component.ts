@@ -9,6 +9,7 @@ import { BsLocaleService } from 'ngx-bootstrap/datepicker'
 import * as moment from 'moment'
 import {Router} from "@angular/router";
 import {BsModalRef} from "ngx-bootstrap"
+import {UserInfoService} from "../../../core/services/user-info.service";
 
 @Component({
   selector: 'profile-form',
@@ -21,18 +22,22 @@ export class ProfileFormComponent implements OnInit{
   @Input()
   parentBsModalRef: BsModalRef
 
-  locale = currentUser.language.lang_short;
+  locale = this.userInfo.currentUserInfo.language.lang_short //currentUser.language.lang_short;
   birthDate: string
   formGroup: FormGroup
   bsConfig: Partial<BsDatepickerConfig>
   colorTheme: string = 'theme-default'
-  defaultCountryName: string = currentUser.country.name
-  defaultCountryId: number = currentUser.country.id
+  defaultCountryName: string = this.userInfo.currentUserInfo.country.name //currentUser.country.name
+  defaultCountryId: number = this.userInfo.currentUserInfo.country.id //currentUser.country.id
   countryInfoArray: CountryInfo[]
   cityInfoArray: CityInfo[]
   regResult: any
 
-  constructor(private formBuilder: FormBuilder, private api: ApiService, private localeService: BsLocaleService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder,
+              private api: ApiService,
+              private localeService: BsLocaleService,
+              private router: Router,
+              private userInfo: UserInfoService) { }
 
   ngOnInit() {
     this.api.getCountries()
@@ -41,7 +46,7 @@ export class ProfileFormComponent implements OnInit{
       })
     this.localeService.use(this.locale);
     moment.locale(this.locale)
-    this.birthDate = moment(currentUser.birth_date).format('LL')
+    this.birthDate = moment(/*currentUser.birth_date*/this.userInfo.currentUserInfo.birth_date).format('LL')
     this.bsConfig = Object.assign({}, { containerClass: this.colorTheme, showWeekNumbers: false, selectFromOtherMonth: false })
     this.initForm()
 
@@ -128,10 +133,11 @@ export class ProfileFormComponent implements OnInit{
           gender: this.formGroup.controls['gender'].value,
           city: this.formGroup.controls['city'].value,
           photo: this.formGroup.controls['photo'].value,
-          language: currentUser.language.id
+          language: this.userInfo.currentUserInfo.language.id//currentUser.language.id
         })
         .subscribe((result: any) => {
           if (result) {
+            this.userInfo.updateUserInfo({name: result.name, surname: result.surname, member_id: result.member_id})
             this.parentBsModalRef.hide()
             this.parentBsModalRef = null
             this.router.navigateByUrl('/feed')

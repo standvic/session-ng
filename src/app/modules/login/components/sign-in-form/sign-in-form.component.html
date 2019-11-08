@@ -1,0 +1,40 @@
+<div class="modal-header">
+  <h4 class="modal-title">Вход / регистрация</h4>
+</div>
+
+<div class="modal-body">
+  <div class="logo" style="background-color: #eee;"></div>
+
+  <form (ngSubmit)="signIn()">
+    <label>E-mail или Номер контракта</label>
+    <input class="form-control" type="text" required [(ngModel)]="emailContract" name="emailContract" (keyup)="changed()">
+    <label>Пароль</label>
+    <input class="form-control" type="text" required [(ngModel)]="password" name="password" (keyup)="changed()"><br />
+    <button [disabled]="disabled">Далее</button>&nbsp;
+    <div [hidden]="!error" class="alert alert-danger">
+      {{error}}
+    </div>
+  </form> <br/>
+
+  <div class="row text-center">
+      <span (click)="newReg()" style="background: none!important;
+                                                          border: none;
+                                                          padding: 0!important;
+                                                          color: #069;
+                                                          text-decoration: underline;
+                                                          cursor: pointer;">
+        Новая регистрация
+      </span>
+  </div>
+
+  <div class="row text-center">
+      <span (click)="remindPassword()" style="background: none!important;
+                                                            border: none;
+                                                            padding: 0!important;
+                                                            color: #069;
+                                                            text-decoration: underline;
+                                                            cursor: pointer;">
+          Напомнить пароль
+        </span>
+  </div>
+</div>

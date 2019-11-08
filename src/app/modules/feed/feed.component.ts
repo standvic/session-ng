@@ -11,8 +11,8 @@ export class FeedComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    console.log('LOGOUTING...')
-    this.authService.logout()
+    /*console.log('LOGOUTING...')
+    this.authService.logout()*/
   }
 
 }

@@ -15,12 +15,13 @@ export class LoginComponent implements OnInit {
   openModalWithComponent() {
     const initialState = {
       list: [],
-      title: 'Вход / регистрация'
+      //title: 'Вход / регистрация'
     },
     ignoreBackdropClick: boolean = true,
-    backdrop: boolean = false;
+    backdrop: boolean = false,
+    keyboard: boolean = false
 
-    this.bsModalRef = this.modalService.show(LoginRegFormComponent, {backdrop, initialState, ignoreBackdropClick});
+    this.bsModalRef = this.modalService.show(LoginRegFormComponent, {backdrop, initialState, ignoreBackdropClick, keyboard });
   }
 
   ngOnInit() {

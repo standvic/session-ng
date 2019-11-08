@@ -1,14 +1,18 @@
 <div class="modal-header">
-  <h4 class="modal-title">{{title}}</h4>
+  <h4 class="modal-title">Указать ID</h4>
 </div>
+
 <div class="modal-body">
   <div class="logo" style="background-color: #eee;"></div>
-  <form>
+
+  <form (ngSubmit)="setGuarantor()">
     <label>Введите код</label>
-    <input type="text"  class="form-control" required name="">
+    <input type="text"  class="form-control" required [(ngModel)]="memberId" name="memberId" (keyup)="changed($event)">
     <label>или номер телефона</label>
-    <input type="text" class="form-control" required name="">
-    <button>Далее</button>&nbsp;
-    <button (click)="onNewReg()">Пропустить</button>
+    <input type="text" class="form-control" required [(ngModel)]="memberPhone" name="memberPhone" (keyup)="changed($event)"><br/>
+    <button [disabled]="disabled">Далее</button>&nbsp;
+    {{error}}
   </form>
+
+  <button (click)="onNewReg()">Пропустить</button>
 </div>

@@ -11,7 +11,7 @@ export let currentUser: User = {
   created_date: new Date(),
   gender: 0,
   accounts: [],
-  user_phones: [],
+  user_phones: [0],
   photo: '',
   city: {
     id: 0,
