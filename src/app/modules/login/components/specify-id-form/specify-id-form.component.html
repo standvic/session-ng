@@ -1,18 +1,23 @@
-<div class="modal-header">
-  <h4 class="modal-title">Указать ID</h4>
+<div class="modal-header" style="background-color: #edd5f9">
+  <h4 class="modal-title" style="margin:0 auto; text-align:center;">Указать ID</h4>
 </div>
 
 <div class="modal-body">
-  <div class="logo" style="background-color: #eee;"></div>
+  <div style="margin:0 auto; text-align:center;">
+    <div class="logo" style="background-color: #eee;"></div>
+  </div>
 
-  <form (ngSubmit)="setGuarantor()">
+  <form>
     <label>Введите код</label>
-    <input type="text"  class="form-control" required [(ngModel)]="memberId" name="memberId" (keyup)="changed($event)">
+    <input type="text"  class="form-control" required [(ngModel)]="memberId" name="memberId" (keyup)="changed($event)"><br/>
     <label>или номер телефона</label>
     <input type="text" class="form-control" required [(ngModel)]="memberPhone" name="memberPhone" (keyup)="changed($event)"><br/>
-    <button [disabled]="disabled">Далее</button>&nbsp;
-    {{error}}
+    <div style="margin:0 auto; text-align:center;">
+      <button (click)="setGuarantor()" [disabled]="disabled" class="btn btn-warning" style="background-color: #c474ea; color: white; border: 1px solid transparent;">Далее</button>&nbsp;&nbsp;
+      <button (click)="onNewReg()" class="btn btn-success">Пропустить</button><br/>
+      <span style="color: red;">{{error}}</span>
+    </div>
   </form>
 
-  <button (click)="onNewReg()">Пропустить</button>
+
 </div>

@@ -1,10 +1,21 @@
 <header>
+  <div style="position: absolute; left: 0; width: 50%; color: white">
     <a routerLink="" class="logo"></a>
-    <a routerLink="/support" class="icon icon_head-phones_white header__help-icon" style="position: fixed; right: 17.9em; top: 0.9em; z-index: 9999"></a>
-    <a routerLink="/profile" *ngIf="name && surname" style="position: fixed; right: 10.9em; top: 0.9em; z-index: 9999; color: white">
-      <span>{{name}} </span>
-      <span>{{surname}}</span>
-    </a>
-    <span *ngIf="showAccount" style="color: white">{{memberId}}</span>
-    <a routerLink="/login" *ngIf="name && surname" (click)="logOut()" class="header__exit" style="position: fixed; right: 0.9em; top: 0.9em; z-index: 9999; color: white">Выйти</a>
+  </div>
+
+  <div class="header__authorization">
+    <div class="header__user">
+
+      <div class="header__block-name" style="font-size: 18px; font-family: Arial; margin-bottom: 40px;">
+        <a routerLink="/support" *ngIf="showAccount" class="icon icon_head-phones_white header__help-icon" style="padding-bottom: 10px;"></a>
+        <a routerLink="/account" *ngIf="name && surname">
+          <span>{{name}}&nbsp;</span>
+          <span>{{surname}}</span>
+        </a>&nbsp;
+        <span *ngIf="memberId" style="color: white">({{memberId}})</span>
+      </div>
+
+      <a routerLink="/login" *ngIf="showAccount" (click)="logOut()" class="header__exit" style="font-size: 14px; font-family: Arial; margin-bottom: 50px;">Выйти</a>
+    </div>
+  </div>
 </header>

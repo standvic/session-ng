@@ -10,3 +10,5 @@ export const auth = {
     client_secret: '673e4egz8nksskgs0kwck84o4g8oc0ccc8084wwccsk0gkkkg'
   }
 }
+
+export const uriPrefix = 'ng-app'

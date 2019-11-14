@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core"
 import { BsModalService, BsModalRef } from "ngx-bootstrap"
 import { SpecifyIdFormComponent } from "../specify-id-form/specify-id-form.component";
 import { SignInFormComponent } from "../sign-in-form/sign-in-form.component";
+import {ModalStateService} from "../../../../core/services/modal-state.service";
 
 @Component({
   selector: 'phone-confirmed',
@@ -13,7 +14,9 @@ export class PhoneConfirmedFormComponent implements OnInit{
   title: string
   newReg: boolean = true
 
-  constructor(public bsModalRef: BsModalRef, private modalService: BsModalService) {
+  constructor(public bsModalRef: BsModalRef,
+              private modalService: BsModalService,
+              private  modalState: ModalStateService) {
   }
 
   ngOnInit(): void {
@@ -26,9 +29,17 @@ export class PhoneConfirmedFormComponent implements OnInit{
       keyboard: boolean = false
 
     let sub = this.modalService.onHidden.subscribe(() => {
-                 this.bsModalRef = this.modalService.show(this.newReg ? SpecifyIdFormComponent : SignInFormComponent, {backdrop, initialState, ignoreBackdropClick, keyboard});
-                 sub.unsubscribe()
-               })
+      if (!this.modalState.stopLogin) {
+        this.bsModalRef = this.modalService.show(this.newReg ? SpecifyIdFormComponent : SignInFormComponent, {
+          backdrop,
+          initialState,
+          ignoreBackdropClick,
+          keyboard
+        });
+        this.modalState.value = this.bsModalRef
+      }
+      sub.unsubscribe()
+    })
   }
 
   onNewReg() {

@@ -1,11 +1,15 @@
-<div class="modal-header">
-  <h4 class="modal-title">Указать промо-код/ID</h4>
+<div class="modal-header" style="background-color: #edd5f9">
+  <h4 class="modal-title" style="margin:0 auto; text-align:center;">Указать промо-код/ID</h4>
 </div>
 <div class="modal-body">
-  <div class="logo" style="background-color: #eee;"></div>
+  <div style="margin:0 auto; text-align:center;">
+    <div class="logo" style="background-color: #eee;"></div>
+  </div>
   <div>
     Вы хотите получить бонус 100 монет (сессий)?
+  </div><br/>
+  <div style="margin:0 auto; text-align:center;">
+    <button (click)="putMember()" class="btn btn-warning" style="background-color: #c474ea; color: white; border: 1px solid transparent; width: 40%;">Получить бонус</button>&nbsp;
+    <button (click)="onNewReg()" class="btn btn-warning" style="background-color: #964ee2; color: white; border: 1px solid transparent; width: 40%;">Отказаться</button>
   </div>
-  <button (click)="putMember()">Получить бонус</button>&nbsp;
-  <button (click)="onNewReg()">Отказаться</button>
 </div>

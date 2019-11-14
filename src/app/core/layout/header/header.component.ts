@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { currentUser } from "../../clientConfig";
-import  {SignedInUserService } from "../../services/signed-in.service";
-import {UserInfoService} from "../../services/user-info.service";
-import {AuthService} from "../../auth/auth.service";
+import  { SignedInUserService } from "../../services/signed-in.service";
+import { UserInfoService } from "../../services/user-info.service";
+import { AuthService } from "../../auth/auth.service";
 
 @Component({
   selector: 'app-header',
@@ -22,6 +21,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.userInfo.currentUser.subscribe( value => {
       this.name = value.name
       this.surname = value.surname
@@ -30,6 +30,10 @@ export class HeaderComponent implements OnInit {
     this.signedInUser.IsUserSignedIn.subscribe( value => {
       this.showAccount = value
     })
+
+    if (localStorage.getItem('authInfo') && JSON.parse(localStorage.getItem('authInfo')).access_token) {
+      this.signedInUser.IsUserSignedIn.next(true)
+    }
   }
 
   logOut() {

@@ -1,4 +1,5 @@
-import {Component, OnInit} from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { ModalStateService } from "../../core/services/modal-state.service";
 
 
 @Component({
@@ -8,10 +9,14 @@ import {Component, OnInit} from "@angular/core";
 })
 export class SupportComponent implements OnInit {
 
-  constructor() {
+  constructor(private modalState: ModalStateService) {
   }
 
   ngOnInit(): void {
+
+    if (this.modalState.value) {
+      this.modalState.del()
+    }
   }
 
 }

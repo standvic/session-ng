@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core'
-import {AuthService} from "../../core/auth/auth.service"
 
 @Component({
   selector: 'app-feed',
@@ -8,11 +7,8 @@ import {AuthService} from "../../core/auth/auth.service"
 })
 export class FeedComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor() { }
 
   ngOnInit() {
-    /*console.log('LOGOUTING...')
-    this.authService.logout()*/
   }
-
 }

@@ -16,6 +16,8 @@ import { defineLocale } from 'ngx-bootstrap/chronos';
 import { ruLocale } from 'ngx-bootstrap/locale';
 defineLocale('ru', ruLocale);
 
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -30,7 +32,8 @@ defineLocale('ru', ruLocale);
     BrowserAnimationsModule,
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: CachingInterceptor, multi: true },
-              { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor,     multi: true }
+              { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor,     multi: true },
+              { provide: LocationStrategy, useClass: HashLocationStrategy }
               ],
   bootstrap: [AppComponent]
 })

@@ -3,6 +3,7 @@ import { BsModalService, BsModalRef } from "ngx-bootstrap"
 import { SpecifyPromoIdFormComponent } from "../specify-promo-id-form/specify-promo-id-form.compomemt"
 import { UserProfileFormComponent} from "../user-profile-form/user-profile-form.component";
 import {ApiService} from "../../../../core/services/api.service";
+import {ModalStateService} from "../../../../core/services/modal-state.service";
 
 @Component({
   selector: 'phone-confirmed',
@@ -18,7 +19,10 @@ export class SpecifyIdFormComponent implements OnInit{
   error: string
   toReg: boolean = false
 
-  constructor(public bsModalRef: BsModalRef, private modalService: BsModalService, private api: ApiService) {
+  constructor(public bsModalRef: BsModalRef,
+              private modalService: BsModalService,
+              private api: ApiService,
+              private  modalState: ModalStateService) {
   }
 
   ngOnInit(): void {
@@ -31,7 +35,15 @@ export class SpecifyIdFormComponent implements OnInit{
       keyboard: boolean = false
 
     let sub = this.modalService.onHidden.subscribe(() => {
-       this.bsModalRef = this.modalService.show(this.toReg ? UserProfileFormComponent : SpecifyPromoIdFormComponent, {backdrop, initialState, ignoreBackdropClick, keyboard });
+      if (!this.modalState.stopLogin) {
+        this.bsModalRef = this.modalService.show(this.toReg ? UserProfileFormComponent : SpecifyPromoIdFormComponent, {
+          backdrop,
+          initialState,
+          ignoreBackdropClick,
+          keyboard
+        });
+        this.modalState.value = this.bsModalRef
+      }
        sub.unsubscribe()
      })
   }

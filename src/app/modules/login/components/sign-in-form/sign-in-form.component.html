@@ -1,40 +1,46 @@
-<div class="modal-header">
-  <h4 class="modal-title">Вход / регистрация</h4>
+<div class="modal-header" style="background-color: #edd5f9">
+  <h4 class="modal-title" style="margin:0 auto; text-align:center;">Вход / регистрация</h4>
 </div>
 
 <div class="modal-body">
-  <div class="logo" style="background-color: #eee;"></div>
+  <div style="margin:0 auto; text-align:center;">
+    <div class="logo" style="background-color: #eee;"></div>
+  </div>
 
   <form (ngSubmit)="signIn()">
     <label>E-mail или Номер контракта</label>
-    <input class="form-control" type="text" required [(ngModel)]="emailContract" name="emailContract" (keyup)="changed()">
+    <input class="form-control" type="text" required [(ngModel)]="emailContract" name="emailContract" (keyup)="changed()"><br />
     <label>Пароль</label>
-    <input class="form-control" type="text" required [(ngModel)]="password" name="password" (keyup)="changed()"><br />
-    <button [disabled]="disabled">Далее</button>&nbsp;
-    <div [hidden]="!error" class="alert alert-danger">
-      {{error}}
+    <input class="form-control" type="password" required [(ngModel)]="password" name="password" (keyup)="changed()"><br />
+    <div style="margin:0 auto; text-align:center;">
+      <button [disabled]="disabled" class="btn btn-warning" style="background-color: #c474ea; color: white; border: 1px solid transparent;">Далее</button>&nbsp;
+      <div [hidden]="!error" class="alert alert-danger">
+        {{error}}
+      </div>
     </div>
   </form> <br/>
 
-  <div class="row text-center">
-      <span (click)="newReg()" style="background: none!important;
-                                                          border: none;
-                                                          padding: 0!important;
-                                                          color: #069;
-                                                          text-decoration: underline;
-                                                          cursor: pointer;">
-        Новая регистрация
-      </span>
-  </div>
-
-  <div class="row text-center">
-      <span (click)="remindPassword()" style="background: none!important;
+  <div style="margin:0 auto; text-align:center;">
+    <!--<div class="row text-center">-->
+        <span (click)="newReg()" style="background: none!important;
                                                             border: none;
                                                             padding: 0!important;
                                                             color: #069;
-                                                            text-decoration: underline;
+                                                            /*text-decoration: underline;*/
                                                             cursor: pointer;">
-          Напомнить пароль
-        </span>
+          Новая регистрация
+        </span><br/><br/>
+   <!-- </div>
+
+    <div class="row text-center">-->
+        <span (click)="remindPassword()" style="background: none!important;
+                                                              border: none;
+                                                              padding: 0!important;
+                                                              color: #069;
+                                                              /*text-decoration: underline;*/
+                                                              cursor: pointer;">
+            Напомнить пароль
+          </span>
+    <!--</div>-->
   </div>
 </div>

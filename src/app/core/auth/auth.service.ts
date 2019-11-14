@@ -1,11 +1,13 @@
 import { Injectable } from "@angular/core";
-import {HttpClient } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject, Observable } from "rxjs";
 import { map } from "rxjs/operators"
 import { SignedInUserService } from "../services/signed-in.service";
 
 import { environment } from "../../../environments/environment";
-import {AuthInfo, User} from "../models";
+import { AuthInfo } from "../models";
+import { ModalStateService } from "../services/modal-state.service";
+import { Router } from "@angular/router";
 
 @Injectable({providedIn: "root"})
 export class AuthService {
@@ -14,7 +16,10 @@ export class AuthService {
   public authInfo: Observable<AuthInfo>
   private authMethod: string = environment.authMethod
 
-  constructor(private http:HttpClient, private signedInUser: SignedInUserService) {
+  constructor(private http:HttpClient,
+              private signedInUser: SignedInUserService,
+              private modalState: ModalStateService,
+              private router: Router) {
     this.authInfoSubject = new BehaviorSubject<AuthInfo>(JSON.parse(localStorage.getItem('authInfo')))
     this.authInfo = this.authInfoSubject.asObservable()
   }
@@ -37,6 +42,12 @@ export class AuthService {
 
   public logout() {
     localStorage.removeItem('authInfo')
+    this.signedInUser.IsUserSignedIn.next(false)
+    if (this.modalState.value) {
+      this.modalState.del()
+      //this.modalState.stopLogin = true
+      this.router.navigateByUrl('/login')
+    }
     this.authInfoSubject.next(null)
   }
 }

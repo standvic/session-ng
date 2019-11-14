@@ -5,6 +5,8 @@ import {BsModalService, BsModalRef } from "ngx-bootstrap";
 import { AuthService } from "../../../../core/auth/auth.service";
 import { Router} from "@angular/router";
 import { currentUser} from "../../../../core/clientConfig";
+import {ModalStateService} from "../../../../core/services/modal-state.service";
+import {UserInfoService} from "../../../../core/services/user-info.service";
 
 @Component({
   selector: 'sign-in-form',
@@ -23,7 +25,9 @@ export class SignInFormComponent implements OnInit{
   constructor(public bsModalRef: BsModalRef,
               private modalService: BsModalService,
               private authService: AuthService,
-              private router: Router) {
+              private router: Router,
+              private userInfo: UserInfoService,
+              private  modalState: ModalStateService) {
   }
 
   ngOnInit(): void {
@@ -35,10 +39,11 @@ export class SignInFormComponent implements OnInit{
       keyboard: boolean = false
 
     let sub = this.modalService.onHidden.subscribe(() => {
-      if (!this.signedIn) {
+      if (!this.signedIn && !this.modalState.stopLogin) {
         this.bsModalRef = this.modalService.show(this.remind ? RemainPasswordFormComponent : UserProfileFormComponent, { backdrop, initialState, ignoreBackdropClick, keyboard });
-        sub.unsubscribe()
+        this.modalState.value = this.bsModalRef
       }
+      sub.unsubscribe()
     })
   }
 
@@ -47,7 +52,7 @@ export class SignInFormComponent implements OnInit{
       {
         email: this.emailContract,
         password: this.password,
-        phone: currentUser.user_phones[0],
+        phone: this.userInfo.currentUserInfo.user_phones[0],
         phone_id: '1c6d3e0212c427b3A',
         grant_type: 'https://api.sessia.com/grant/email',
         client_id: '17_f3j2lpkvec8c8gcg8ccoc84gkkss4wwc4ssk4o4ggk4c00844',

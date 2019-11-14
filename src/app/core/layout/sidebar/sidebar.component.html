@@ -1,5 +1,6 @@
 <div class="side-menu-container">
-  <a routerLink="/feed" class="menu-item menu-item_active">
-    <span class="menu-item__name">Лента</span>
+  <a *ngFor="let route of routeList" routerLink="{{route.url}}" class="menu-item"
+     [ngClass]="{ 'menu-item_active' : currrentUrl == route.url }" [ngStyle]="{'background-image': 'url(' + route.icon + ')'}">
+    <span class="menu-item__name">{{route.name}}</span>
   </a>
 </div>

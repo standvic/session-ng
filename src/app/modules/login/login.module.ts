@@ -13,8 +13,10 @@ import { SpecifyPromoIdFormComponent } from "./components/specify-promo-id-form/
 import { UserProfileFormComponent } from "./components/user-profile-form/user-profile-form.component"
 import { ProfileFormComponent } from "../../shared/components/form/profile-form.component"
 import { ReactiveFormsModule } from "@angular/forms"
-import {SignInFormComponent } from "./components/sign-in-form/sign-in-form.component"
-import{ RemainPasswordFormComponent } from "./components/remain-password-form/remain-password-form.component";
+import { SignInFormComponent } from "./components/sign-in-form/sign-in-form.component"
+import { RemainPasswordFormComponent } from "./components/remain-password-form/remain-password-form.component";
+import { PasswordSendedFormCompomemt } from "./components/password-sended-form/password-sended-form.compomemt";
+import { DirectivesModule } from "../../shared/directives/directives.module";
 
 @NgModule({
   imports: [
@@ -24,16 +26,18 @@ import{ RemainPasswordFormComponent } from "./components/remain-password-form/re
     FormsModule,
     ReactiveFormsModule,
     BsDatepickerModule.forRoot(),
+    DirectivesModule,
     DatepickerModule.forRoot()
   ],
 
   declarations: [LoginComponent, LoginRegFormComponent, PhoneConfirmedFormComponent,
                  SpecifyIdFormComponent, SpecifyPromoIdFormComponent, UserProfileFormComponent,
-                 ProfileFormComponent, SignInFormComponent, RemainPasswordFormComponent],
+                 ProfileFormComponent, SignInFormComponent, RemainPasswordFormComponent,
+                 PasswordSendedFormCompomemt],
 
   entryComponents: [LoginRegFormComponent, PhoneConfirmedFormComponent, SpecifyIdFormComponent,
                     SpecifyPromoIdFormComponent, UserProfileFormComponent, SignInFormComponent,
-                    RemainPasswordFormComponent]
+                    RemainPasswordFormComponent, PasswordSendedFormCompomemt]
 })
 
 export class LoginModule { }

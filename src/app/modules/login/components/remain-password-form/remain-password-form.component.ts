@@ -1,8 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { UserProfileFormComponent} from "../user-profile-form/user-profile-form.component";
-import {BsModalService, BsModalRef} from "ngx-bootstrap";
-import {ApiService} from "../../../../core/services/api.service";
-import {Router} from "@angular/router";
+import { UserProfileFormComponent } from "../user-profile-form/user-profile-form.component";
+import { BsModalService, BsModalRef } from "ngx-bootstrap";
+import { ApiService } from "../../../../core/services/api.service";
+import { Router } from "@angular/router";
+import { ModalStateService } from "../../../../core/services/modal-state.service";
+import { PasswordSendedFormCompomemt } from "../password-sended-form/password-sended-form.compomemt";
 
 @Component({
   selector: 'sign-in-form',
@@ -18,11 +20,13 @@ export class RemainPasswordFormComponent implements OnInit{
   phone: string
   invalidEmail: string
   invalidPhone: string
+  invalidCode: string
 
   constructor(public bsModalRef: BsModalRef,
               private modalService: BsModalService,
               private api: ApiService,
-              private router: Router) {
+              private router: Router,
+              private  modalState: ModalStateService) {
   }
 
   ngOnInit(): void {
@@ -34,10 +38,12 @@ export class RemainPasswordFormComponent implements OnInit{
       keyboard: boolean = false
 
     let sub = this.modalService.onHidden.subscribe(() => {
-      if (!this.reminded) {
-        this.bsModalRef = this.modalService.show(UserProfileFormComponent, { backdrop, initialState, ignoreBackdropClick, keyboard });
-        sub.unsubscribe()
+      if (!this.modalState.stopLogin) {
+        this.bsModalRef = this.modalService.show(this.reminded ? PasswordSendedFormCompomemt : UserProfileFormComponent,
+          { backdrop, initialState, ignoreBackdropClick, keyboard });
+        this.modalState.value = this.bsModalRef
       }
+      sub.unsubscribe()
     })
   }
 
@@ -48,11 +54,15 @@ export class RemainPasswordFormComponent implements OnInit{
           this.reminded = true
           this.bsModalRef.hide()
           this.bsModalRef = null
-          this.router.navigateByUrl('/feed')
         },
         error => {
-          this.invalidEmail = error.error.details.email
-          this.invalidPhone = error.error.details.phone
+          if (error.error.details) {
+            this.invalidEmail = error.error.details.email
+            this.invalidPhone = error.error.details.phone
+          }
+          if (error.error.code) {
+            this.invalidCode = error.error.code
+          }
         })
 
   }

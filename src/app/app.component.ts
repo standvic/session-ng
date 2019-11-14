@@ -11,10 +11,12 @@ export class AppComponent {
   showHeader = false;
   showSidebar = false;
   title = 'session-ng';
-  constructor(private router: Router, private activatedRoute: ActivatedRoute){
+  constructor(private router: Router,
+              private activatedRoute: ActivatedRoute){
   }
 
   ngOnInit(): void {
+
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.showHeader = this.activatedRoute.firstChild.snapshot.data.showHeader !== false;

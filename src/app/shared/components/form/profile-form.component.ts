@@ -1,7 +1,7 @@
 import { Component, OnInit, Input} from "@angular/core"
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker'
-import { currentUser } from "../../../core/clientConfig"
+//import { currentUser } from "../../../core/clientConfig"
 import {CityInfo, CountryInfo} from "../../../core/models";
 import { ApiService } from "../../../core/services/api.service"
 
@@ -10,6 +10,7 @@ import * as moment from 'moment'
 import {Router} from "@angular/router";
 import {BsModalRef} from "ngx-bootstrap"
 import {UserInfoService} from "../../../core/services/user-info.service";
+import {ModalStateService} from "../../../core/services/modal-state.service";
 
 @Component({
   selector: 'profile-form',
@@ -27,7 +28,7 @@ export class ProfileFormComponent implements OnInit{
   formGroup: FormGroup
   bsConfig: Partial<BsDatepickerConfig>
   colorTheme: string = 'theme-default'
-  defaultCountryName: string = this.userInfo.currentUserInfo.country.name //currentUser.country.name
+  //defaultCountryName: string = this.userInfo.currentUserInfo.country.name //currentUser.country.name
   defaultCountryId: number = this.userInfo.currentUserInfo.country.id //currentUser.country.id
   countryInfoArray: CountryInfo[]
   cityInfoArray: CityInfo[]
@@ -37,9 +38,13 @@ export class ProfileFormComponent implements OnInit{
               private api: ApiService,
               private localeService: BsLocaleService,
               private router: Router,
-              private userInfo: UserInfoService) { }
+              private userInfo: UserInfoService,
+              private  modalState: ModalStateService) { }
 
   ngOnInit() {
+
+    this.modalState.value = this.parentBsModalRef
+
     this.api.getCountries()
       .subscribe((data: CountryInfo[]) => {
         this.countryInfoArray = data

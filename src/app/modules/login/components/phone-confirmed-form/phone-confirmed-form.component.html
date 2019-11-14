@@ -1,11 +1,19 @@
-<div class="modal-header">
-  <h4 class="modal-title">Ваш номер телефона подтверждён</h4>
+<div class="modal-header" style="background-color: lightgrey">
+  <h4 class="modal-title" style="margin:0 auto; text-align:center;">Ваш номер телефона подтверждён</h4>
 </div>
 
 <div class="modal-body">
-  <img src="https://api.sessia.com/web-version/css/img/girls/main.png">
-  <div>Добро пожаловать в Sessia!</div>
-  <button (click)="onNewReg()">Новая регистрация</button><br/>
-  <button (click)="hasAccount()">У меня уже есть учетная запись</button>
-  <div>Добавить к ней номер телефона</div>
+  <div style="margin:0 auto; text-align:center;">
+    <img src="https://api.sessia.com/web-version/css/img/girls/main.png" >
+  </div>
+  <div style="margin:0 auto; text-align:center;">
+    Добро пожаловать в Sessia!
+  </div><br/>
+  <div style="margin:0 auto; text-align:center;">
+    <button class="btn btn-warning" (click)="onNewReg()" style="background-color: #964ee2; color: white; border: 1px solid transparent; width: 70%;">Новая регистрация</button><br/><br/>
+    <button class="btn btn-warning" (click)="hasAccount()" style="background-color: #964ee2; color: white; border: 1px solid transparent; width: 70%;">У меня уже есть учетная запись</button>
+  </div>
+  <div style="margin:0 auto; text-align:center;">
+    Добавить к ней номер телефона
+  </div>
 </div>

@@ -1,3 +1,23 @@
+::ng-deep header * {
+  color: white;
+}
+
+::ng-deep .header__user {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+::ng-deep .header__authorization {
+  position: absolute;
+  right: 0;
+  width: 50%;
+  padding-right: 1em;
+  text-align: right;
+  padding-top: 1.2em;
+}
+
 ::ng-deep header {
   position: absolute;
   top: 0;
@@ -46,9 +66,16 @@
   background-repeat: no-repeat;
 }
 
-.header__exit {
+::ng-deep .header__exit {
   background-color: #a854d0;
   padding: 10px 30px;
   border-radius: 20px;
   font-size: 16px;
+}
+
+::ng-deep .header__block-name {
+  margin: 0 12px;
+  font-size: 12px;
+  color: white;
+  font-weight: 600;
 }
