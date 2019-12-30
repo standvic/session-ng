@@ -6,4 +6,4 @@ Only authorization & registration to https://sessia.com/web-version using old de
 To prevent server time out error select Russia in the first form.
 
 # Usage
-Download repo, unpack & copy folder "session-ng-dist" in the separate local folder. Rename folder "session-ng-dist" to "ng-app". Use this https://www.npmjs.com/package/http-server to set server to those local folder. Open browser with url localhost:8080/ng-app and use.
+Download repo, unpack & copy folder "dist". Use this https://www.npmjs.com/package/http-server to set http-server to folder "dist". Open browser with url localhost:8080 and use.
