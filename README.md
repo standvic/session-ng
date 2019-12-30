@@ -1,27 +1,9 @@
 # SessionNg
-
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.2.
 
-## Development server
+## Description
+Only authorization & registration to https://sessia.com/web-version using old design. Project was made with Angilar.
+To prevent server time out error select Russia in the first form.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+# Usage
+Download repo, unpack & copy folder "session-ng-dist" in the separate local folder. Rename folder "session-ng-dist" to "ng-app". Use this https://www.npmjs.com/package/http-server to set server to those local folder. Open browser with url localhost:8080/ng-app and use.
