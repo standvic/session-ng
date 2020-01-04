@@ -8,4 +8,4 @@ Only authorization & registration to https://sessia.com/web-version using old de
 Download repo, unpack & copy folder "dist". Use this https://www.npmjs.com/package/http-server to set http-server to folder "dist". Open browser with url localhost:8080 and use.
 
 WARNING!!!
-To prevent server time out error in registration form please select Russia in the first form.
+To prevent server time out error in the registration form please select Russia in the first form.
